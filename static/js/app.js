@@ -17,6 +17,52 @@ d3.json('samples.json').then(data => {
     });
 });
 
+// DO THE DEMOGRAPHIC INFO FOR EACH NAME
+function showDemo(subject) {
+    var demInfo = "";
+    switch(subject) {
+      case "somehow grab name not hard coded":
+        demInfo = "somehow display their info";
+        break;
+    // console.log(message);
+  }}
+  
+
+
+// DO THE PLOT BIT
+
+
+d3.selectAll("body").on("change", updatePlotly);
+
+// This function is called when a dropdown menu item is selected
+function updatePlotly() {
+  // Use D3 to select the dropdown menu
+  var dropdownMenu = d3.select("#selDataset");
+  // Assign the value of the dropdown menu option to a variable
+  var dataset = dropdownMenu.node().value;
+
+  var CHART = d3.selectAll("#plot").node();
+
+  // Initialize x and y arrays
+  var x = [];
+  var y = [];
+
+  switch(dataset) {
+    case "dataset1":
+      x = [1, 2, 3, 4, 5];
+      y = [1, 2, 4, 8, 16];
+      break;
+
+    }
+
+
+    // Note the extra brackets around 'x' and 'y'
+    Plotly.restyle(CHART, "x", [x]);
+    Plotly.restyle(CHART, "y", [y]);
+  }
+  
+  init();
+  
 // console.log(namesMap);
 
 // var names = d3.json('samples.json')['names'];

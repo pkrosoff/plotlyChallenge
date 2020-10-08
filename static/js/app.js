@@ -2,9 +2,8 @@
 d3.json('samples.json').then(data => {
     console.log(data);
 })
-// sort ascending
+// populate dropdown with id numbers (names)
 
-// slice top ten
 
 // make bar chart (.reverse()?)
 

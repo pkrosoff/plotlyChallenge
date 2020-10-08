@@ -1,8 +1,36 @@
 // read in data
+// below console logs names array
+// d3.json('samples.json').then(data => {
+//     console.log(data.names);
+// });
+var dropdown = d3.select("#selDataset");
+// THIS POPULATES THE NAMES DROPDOWN!
 d3.json('samples.json').then(data => {
-    console.log(data);
-})
+//     console.log(data);
+// })
 // populate dropdown with id numbers (names)
+    (data.names).forEach((item) => {
+        // console.log(item);
+        var row = dropdown.append("option")
+        .attr("value", item);
+        row.text(item);
+    });
+});
+
+// console.log(namesMap);
+
+// var names = d3.json('samples.json')['names'];
+// // get reference to the table body
+
+// console.log(dropdown);
+
+// console log each name
+// data.forEach(names => {
+//     console.log(name);
+// })
+// console.log(names)
+
+// sort ascending
 
 
 // make bar chart (.reverse()?)
@@ -29,3 +57,4 @@ d3.json('samples.json').then(data => {
 // how do you combine the data?
 // let metadata = data
 // console.log(metadata)
+console.log(this.value)

@@ -1,106 +1,137 @@
-// read in data
-// below console logs names array
-// d3.json('samples.json').then(data => {
-//     console.log(data.names);
-// });
+// // get the data how you like it
+function updatePage() {}
+
+
+let data = d3.json('samples.json').then(data => {
+    // console.log(data);
+    var metadata = data.metadata;
+    // console.log(metadata);
+    var names = data.names;
+    // console.log(names);
+    var samples = data.samples;
+    // console.log(samples);
+
+d3.selectAll("#body").on("change", updatePage);
+
+
+
+
+// ********************
+// //THIS CAUSES REACTION WHEN DROPDOWN CHANGED
 var dropdown = d3.select("#selDataset");
+
 // THIS POPULATES THE NAMES DROPDOWN!
-d3.json('samples.json').then(data => {
-//     console.log(data);
-// })
-// populate dropdown with id numbers (names)
-    (data.names).forEach((item) => {
-        // console.log(item);
-        var row = dropdown.append("option")
-        .attr("value", item);
-        row.text(item);
+names.forEach((item) => {
+    // console.log(item);
+    var row = dropdown.append("option")
+    .attr("value", item);
+    row.text(item);
+})
+const dropdownchange = () => {
+    var inputElement = d3.select("#selDataset");
+    //    console.log(inputElement);
+       inputValue = inputElement.property("value");
+    //    console.log(inputValue);
+    // var choiceID = (d3.event.target.value);
+
+    // var choiceIndex = choiceID.findIndex;
+    // console.log(`the menu was changed to ${choiceID}!`);
+    // console.log(choiceIndex)
+
+var demoTable = d3.select("#demographics-table");
+var tableBody = demoTable.append("tbody");
+
+// var inputElement = d3.select("#selDataset");
+// console.log(inputElement);
+// inputValue = inputElement.property("value");
+// console.log(inputValue);
+const selectID = Object.entries(metadata => {
+    key, value});
+console.log(data);
+console.log(metadata);
+console.log(key);
+console.log(value);
+// console.log(data.metadata);
+// console.log(data.metadata['id']);
+console.log(inputValue)
+
+// console.log(data);
+let filteredMetadata = metadata.filter(selectID);
+console.log(filteredMetadata);
+
+// filteredData = metadata.filter(item => item.id === inputValue);
+// console.log(filteredData);
+filteredMetadata.forEach((item) => {
+        let cell = tableBody.append("tr")
+        cell.text(item);
+        // console.log(item.id)
+        // console.log(item)
     });
+    
+};
+// *************************
+
+// //THE DEMOGRAPHIC INFO FOR EVERY NAME
+// const filterdemo = () => {
+// // console.log("hello")
+//     // prevent page from refreshing
+//     d3.event.preventDefault();
+
+//    // select input element
+// //    var choiceID = (d3.event.target.value);
+//    var inputElement = d3.select("#selDataset");
+// //    console.log(inputElement);
+//    inputValue = inputElement.property("value");
+// //    console.log(inputValue)
+//    // add filter date
+//    filteredData = metadata.filter(row => row.id === inputValue);
+//    console.log(row.id)
+//    // Populate table with filtered values
+   
+//    filteredData.forEach((sighting) => {
+//        let row = tableBody.append("tr");
+//        Object.values(sighting).forEach(value => {
+//            let cell = row.append("td");
+//            cell.text(value);
+
+//        })
+//    })
+// }
+
+dropdown.on("change", dropdownchange);
+// dropdown.on("change", filterdemo);
 });
 
-// DO THE DEMOGRAPHIC INFO FOR EACH NAME
-function showDemo(subject) {
-    var demInfo = "";
-    switch(subject) {
-      case "somehow grab name not hard coded":
-        demInfo = "somehow display their info";
-        break;
-    // console.log(message);
-  }}
-  
 
 
-// DO THE PLOT BIT
 
 
-d3.selectAll("body").on("change", updatePlotly);
 
-// This function is called when a dropdown menu item is selected
-function updatePlotly() {
-  // Use D3 to select the dropdown menu
-  var dropdownMenu = d3.select("#selDataset");
-  // Assign the value of the dropdown menu option to a variable
-  var dataset = dropdownMenu.node().value;
+// // IDENITFY EACH GRAPH FROM INDEX.HTML AND UPDATE ON CHANGE
 
-  var CHART = d3.selectAll("#plot").node();
+// function updatePlotly(optionChanged) {
 
-  // Initialize x and y arrays
-  var x = [];
-  var y = [];
-
-  switch(dataset) {
-    case "dataset1":
-      x = [1, 2, 3, 4, 5];
-      y = [1, 2, 4, 8, 16];
-      break;
-
-    }
+// //THIS CAUSES REACTION WHEN DROPDOWN CHANGED
+//     var dataset = dropdown.property("value");}
 
 
-    // Note the extra brackets around 'x' and 'y'
-    Plotly.restyle(CHART, "x", [x]);
-    Plotly.restyle(CHART, "y", [y]);
-  }
-  
-  init();
-  
-// console.log(namesMap);
+//     var BAR = document.getElementById("bar");
+//     updatePlotly.restyle(BAR, "values", [optionChanged]);
 
-// var names = d3.json('samples.json')['names'];
-// // get reference to the table body
+//     var GUAGE = document.getElementById("guage");
+//     updatePlotly.restyle(GUAGE, "values", [optionChanged]);
 
-// console.log(dropdown);
+//     var BUBBLE = document.getElementById("bubble");
+//     updatePlotly.restyle(BUBBLE, "values", [optionChanged]);
+// }
 
-// console log each name
-// data.forEach(names => {
-//     console.log(name);
-// })
-// console.log(names)
-
-// sort ascending
-
-
-// make bar chart (.reverse()?)
-
-/// Use sample_values as the values for the bar chart.
-/// Use otu_ids as the labels for the bar chart.
-/// Use otu_labels as the hovertext for the chart.
-
-// create bubble chart
-
-////Use otu_ids for the x values.
-//// Use sample_values for the y values.
-//// Use sample_values for the marker size.
-//// Use otu_ids for the marker colors.
-//// Use otu_labels for the text values.
-
-// Display the sample metadata, i.e., an individual's demographic information.
-
-// Display each key-value pair from the metadata JSON object somewhere on the page.
-
-// Update all of the plots any time that a new sample is selected.
-
-// each individual must have a dashboard with the top ten UTOs and their frequency
-// how do you combine the data?
-// let metadata = data
-// console.log(metadata)
-console.log(this.value)
+// // GET DATA FUNCTIONS
+// function getData(dataset) {
+//     var data = [];
+//     switch (dataset) {
+//     case "subjectID":
+//         data = [940s data];
+//         break;
+//     }
+//     updatePlotly(data);
+// }

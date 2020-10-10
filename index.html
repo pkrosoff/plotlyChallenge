@@ -22,7 +22,7 @@
       <div class="col-md-2">
         <div class="well">
           <h5>Test Subject ID No.:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)">
+          <select id="selDataset" onchange="updatePage(this.value)">
           </select>
         </div>
         <div class="panel panel-primary">
@@ -30,7 +30,7 @@
             <h3 class="panel-title">Demographic Info</h3>
           </div>
           <div id="sample-metadata" class="panel-body">
-            <!-- This is where you will code the metadata stuff in -->
+            <table id="demographics-table"></table>
           </div>
         </div>
       </div>

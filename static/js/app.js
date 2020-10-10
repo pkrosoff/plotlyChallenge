@@ -2,14 +2,19 @@
 function updatePage() {}
 
 
-let data = d3.json('samples.json').then(data => {
-    // console.log(data);
-    var metadata = data.metadata;
+d3.json('samples.json').then(BBdata => {
+    console.log(BBdata);
+    // var metadata = Object.entries(BBdata);
+    var metadata = BBdata.metadata;
+    // var metadata = Object.entries(metadata);
+    console.log(metadata);
+    // var metadata2 = metadata.map(data => data["metadata"]);
     // console.log(metadata);
-    var names = data.names;
-    // console.log(names);
-    var samples = data.samples;
-    // console.log(samples);
+    var names = BBdata.names
+    console.log(names);
+    var samples = BBdata.samples
+    console.log(samples);
+
 
 d3.selectAll("#body").on("change", updatePage);
 
@@ -41,32 +46,30 @@ const dropdownchange = () => {
 var demoTable = d3.select("#demographics-table");
 var tableBody = demoTable.append("tbody");
 
-// var inputElement = d3.select("#selDataset");
+var inputElement = d3.select("#selDataset");
 // console.log(inputElement);
-// inputValue = inputElement.property("value");
-// console.log(inputValue);
-const selectID = Object.entries(metadata => {
-    key, value});
-console.log(data);
-console.log(metadata);
-console.log(key);
-console.log(value);
-// console.log(data.metadata);
-// console.log(data.metadata['id']);
-console.log(inputValue)
+inputValue = inputElement.property("value");
+console.log(inputValue);
 
-// console.log(data);
-let filteredMetadata = metadata.filter(selectID);
-console.log(filteredMetadata);
+var filteredData = metadata.filter(item => item.id == inputValue);
+console.log(filteredData);
 
-// filteredData = metadata.filter(item => item.id === inputValue);
-// console.log(filteredData);
-filteredMetadata.forEach((item) => {
-        let cell = tableBody.append("tr")
-        cell.text(item);
-        // console.log(item.id)
-        // console.log(item)
-    });
+
+   
+filteredData.forEach((item) => {
+    let row = tableBody.append("tr");
+    Object.entries(item).forEach(value => {
+        let cell = row.append("tr");
+        cell.text(`${value[0]}: ${value[1]}`);
+
+    })
+})
+// filteredData.forEach((item) => {
+//         let cell = tableBody.append("tr")
+//         cell.text(item);
+//         // console.log(item.id)
+//         // console.log(item)
+//     });
     
 };
 // *************************
@@ -87,15 +90,7 @@ filteredMetadata.forEach((item) => {
 //    filteredData = metadata.filter(row => row.id === inputValue);
 //    console.log(row.id)
 //    // Populate table with filtered values
-   
-//    filteredData.forEach((sighting) => {
-//        let row = tableBody.append("tr");
-//        Object.values(sighting).forEach(value => {
-//            let cell = row.append("td");
-//            cell.text(value);
 
-//        })
-//    })
 // }
 
 dropdown.on("change", dropdownchange);

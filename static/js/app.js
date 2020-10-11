@@ -49,13 +49,58 @@ var tableBody = demoTable.append("tbody");
 var inputElement = d3.select("#selDataset");
 // console.log(inputElement);
 inputValue = inputElement.property("value");
-console.log(inputValue);
+// console.log(inputValue);
 
 var filteredData = metadata.filter(item => item.id == inputValue);
 var filteredSamples = samples.filter(item => item.id == inputValue)
-var filteredSampleValues = filteredSamples[0].sample_values;
-var SlicedSampleValues = filteredSampleValues.slice(0,10);
-console.log(SlicedSampleValues);
+var SlicedSampleValues = filteredSamples[0].sample_values.slice(0,10).reverse()
+// console.log(SlicedSampleValues);
+var slicedOTUs = filteredSamples[0].otu_ids.slice(0,10).reverse();
+// console.log(slicedOTUs);
+var slicedLabels = filteredSamples[0].otu_labels.slice(0,10).reverse();
+console.log(slicedOTUs);
+// console.log(slicedLabels);
+var trace1 = {
+  x: SlicedSampleValues,
+  y: String(slicedOTUs),
+  text: slicedLabels,
+  type: "bar",
+  orientation: "h"
+};
+
+// Use otu_ids for the x values.
+// Use sample_values for the y values.
+// Use sample_values for the marker size
+// Use otu_ids for the marker colors.
+// Use otu_labels for the text values.
+
+//Not using sliced values for this chart??
+var size = filteredSamples[0].sample_values;
+var desired_maximum_marker_size = 200;
+var trace2 = {
+  x: filteredSamples[0].otu_ids,
+  y: filteredSamples[0].sample_values,
+  text: filteredSamples[0].otu_labels,
+  mode: 'markers',
+  marker: {
+    // work on this!
+    size: size,
+    sizeref: 0.1 * (Math.max(filteredSamples[0].sample_values)/(desired_maximum_marker_size**2)),
+    // MARKER COLORS?
+    sizemode: 'area'
+  }
+};
+
+var bardata = [trace1];
+var barlayout = {
+    title: "Top 10 OTUs in Sample",  
+};
+var bubbledata = [trace2]
+var bubblelayout = {
+  title: "OTU Prevalence in Sample"
+}
+Plotly.newPlot("bar", bardata, barlayout);
+Plotly.newPlot("bubble", bubbledata, bubblelayout)
 
 
 // console.log(filteredSampleValues);
@@ -79,7 +124,7 @@ filteredData.forEach((item) => {
 // function updatePlotly(optionChanged) {
 
 // GET DATA FUNCTIONS
-function buildPlot() {
+
       // Grab values from the response json object to build the plots
 // GET OTU DATA TO LOG
 console.log(samples);
@@ -103,86 +148,86 @@ console.log(samples);
       // console.log(closingPrices);
 
 //   HORIZONTAL BAR CHART
-      var trace1 = {
-        type: "scatter",
-        mode: "lines",
-        name: name,
-        x: dates,
-        y: closingPrices,
-        line: {
-          color: "#17BECF"
-        }
-      };
+    //   var trace1 = {
+    //     type: "scatter",
+    //     mode: "lines",
+    //     name: name,
+    //     x: dates,
+    //     y: closingPrices,
+    //     line: {
+    //       color: "#17BECF"
+    //     }
+    //   };
 
-      var trace2 = {
-        type: "scatter",
-        mode: "lines",
-        name: name,
-        x: dates,
-        y: closingPrices,
-        line: {
-          color: "#17BECF"
-        }
-      };
+    //   var trace2 = {
+    //     type: "scatter",
+    //     mode: "lines",
+    //     name: name,
+    //     x: dates,
+    //     y: closingPrices,
+    //     line: {
+    //       color: "#17BECF"
+    //     }
+    //   };
 
-      var trace3 = {
-        type: "scatter",
-        mode: "lines",
-        name: name,
-        x: dates,
-        y: closingPrices,
-        line: {
-          color: "#17BECF"
-        }
-      };
+    //   var trace3 = {
+    //     type: "scatter",
+    //     mode: "lines",
+    //     name: name,
+    //     x: dates,
+    //     y: closingPrices,
+    //     line: {
+    //       color: "#17BECF"
+    //     }
+    //   };
   
-      var data = [trace1];
+    //   var data = [trace1];
   
-      var layout = {
-        title: `${stock} closing prices`,
-        xaxis: {
-          range: [startDate, endDate],
-          type: "date"
-        },
-        yaxis: {
-          autorange: true,
-          type: "linear"
-        }
-      };
-      var data = [trace2];
+    //   var layout = {
+    //     title: `${stock} closing prices`,
+    //     xaxis: {
+    //       range: [startDate, endDate],
+    //       type: "date"
+    //     },
+    //     yaxis: {
+    //       autorange: true,
+    //       type: "linear"
+    //     }
+    //   };
+    //   var data = [trace2];
   
-      var layout = {
-        title: `${stock} closing prices`,
-        xaxis: {
-          range: [startDate, endDate],
-          type: "date"
-        },
-        yaxis: {
-          autorange: true,
-          type: "linear"
-        }
-      };
-      var data = [trace3];
+    //   var layout = {
+    //     title: `${stock} closing prices`,
+    //     xaxis: {
+    //       range: [startDate, endDate],
+    //       type: "date"
+    //     },
+    //     yaxis: {
+    //       autorange: true,
+    //       type: "linear"
+    //     }
+    //   };
+    //   var data = [trace3];
   
-      var layout = {
-        title: `${stock} closing prices`,
-        xaxis: {
-          range: [startDate, endDate],
-          type: "date"
-        },
-        yaxis: {
-          autorange: true,
-          type: "linear"
-        }
-      };
+    //   var layout = {
+    //     title: `${stock} closing prices`,
+    //     xaxis: {
+    //       range: [startDate, endDate],
+    //       type: "date"
+    //     },
+    //     yaxis: {
+    //       autorange: true,
+    //       type: "linear"
+    //     }
+    //   };
   
-      Plotly.newPlot("plot", data, layout);
+    //   Plotly.newPlot("plot", data, layout);
   
-    };
+    // };
 // *************************
 // }
 
-dropdown.on("change", dropdownchange, buildPlot);
+dropdown.on("change", dropdownchange);
 // dropdown.on("change", filterdemo);
 });
 

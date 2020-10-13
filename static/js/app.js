@@ -20,9 +20,15 @@ d3.json('samples.json').then(BBdata => {
 
 // POPULATE THE TEST SUBJECT ID DROPDOWN
 // **************************************
+var message = ("Choose a Subject");
+d3.select("#selDataset").append("option")
+.attr("value", message).html("Choose A Subject");
+
 var dropdown = d3.select("#selDataset");
 names.forEach((item) => {
     // console.log(item);
+    // var row = dropdown.append("option")
+    // .attr("value", `Choose A Subject`);
     var row = dropdown.append("option")
     .attr("value", item);
     row.text(item);
@@ -97,7 +103,7 @@ Plotly.newPlot("bar", bardata, barlayout);
 // *************************************
 //Not using sliced values for this chart??
 var size = filteredSamples[0].sample_values;
-var desired_maximum_marker_size = 200;
+
 var trace2 = {
   x: filteredSamples[0].otu_ids,
   y: filteredSamples[0].sample_values,
@@ -106,7 +112,7 @@ var trace2 = {
   marker: {
     // work on this!!!!!!!!
     size: size,
-    sizeref: 0.1 * (Math.max(filteredSamples[0].sample_values)/(desired_maximum_marker_size**2)),
+    sizeref: .1,
     // !!!!!!!NEED MARKER COLORS!!!!!!! split into groups range based for colors
     sizemode: 'area'
   }

@@ -22,7 +22,7 @@ d3.json('samples.json').then(BBdata => {
 // **************************************
 var message = ("Choose a Subject");
 d3.select("#selDataset").append("option")
-.attr("value", message).html("Choose A Subject");
+.attr("value", message).html(message);
 
 var dropdown = d3.select("#selDataset");
 names.forEach((item) => {

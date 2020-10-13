@@ -42,15 +42,20 @@ names.forEach((item) => {
 
 // THIS FILTERS DATA AND POPULATES DEMOGRAPHICS TABLE WHEN DROPDOWN IS SELECTED
 // ****************************************
+
 const dropdownchange = () => {
 
 // SELECTING DEMOGRAPHICS TABLE ELEMENTS
 //-----------------------------------------
-  var inputElement = d3.select("#selDataset");
+  // var sample_metadata = d3.select("#sample-metadata");
+  // sample_metadata.html("");
+
   var demoTable = d3.select("#demographics-table");
+
+  demoTable.html("")
+  var inputElement = d3.select("#selDataset");
   var tableBody = demoTable.append("tbody");
   var inputValue = inputElement.property("value");
-
 
 // FILTERING DATA UPON INPUT VALUE SELECTION
 //-----------------------------------------
@@ -60,12 +65,16 @@ var filteredSamples = samples.filter(item => item.id == inputValue);
 // POPULATING TABLE WITH SELECTION DATA
 //-----------------------------------------
 filteredData.forEach((item) => {
+  
+  // inputVal.remove();
   let row = tableBody.append("tr");
-
+  
   Object.entries(item).forEach(value => {
-      let cell = row.append("tr");
-      cell.text(`${value[0]}: ${value[1]}`);
 
+      let cell = row.append("tr");
+      cell.text("");
+      cell.text(`${value[0]}: ${value[1]}`);
+    
   })
 });
 
@@ -80,8 +89,10 @@ filteredData.forEach((item) => {
 var SlicedSampleValues = filteredSamples[0].sample_values.slice(0,10).reverse()
 // console.log(SlicedSampleValues);
 
-var slicedOTUs = filteredSamples[0].otu_ids.slice(0,10).reverse();
+var slicedOTUs = filteredSamples[0].otu_ids.slice(0,10).reverse().map(data => `OTU ` + data);
 // console.log(slicedOTUs);
+// var slicedOTUs
+
 
 var slicedLabels = filteredSamples[0].otu_labels.slice(0,10).reverse();
 // console.log(slicedLabels);
@@ -94,7 +105,7 @@ var slicedLabels = filteredSamples[0].otu_labels.slice(0,10).reverse();
 var trace1 = {
   x: SlicedSampleValues,
   // WORK ON BAR LABELS
-  y: String(slicedOTUs),
+  y: slicedOTUs,
   text: slicedLabels,
   type: "bar",
   orientation: "h"

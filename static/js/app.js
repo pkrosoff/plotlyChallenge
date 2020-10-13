@@ -92,7 +92,9 @@ var trace1 = {
 };
 var bardata = [trace1];
 var barlayout = {
-    title: "Top 10 OTUs in Sample",  
+    title: "Top 10 OTUs in Sample",
+    xaxis: {title: "Prevalence in Sample"},
+    yaxis: {title: "OTU ID Number"}  
 };
 Plotly.newPlot("bar", bardata, barlayout);
 // **************************************
@@ -114,13 +116,14 @@ var trace2 = {
     size: size,
     sizeref: .1,
     // !!!!!!!NEED MARKER COLORS!!!!!!! split into groups range based for colors
-    sizemode: 'area'
-  }
-};
-
+    sizemode: 'area',
+    color: filteredSamples[0].otu_ids,
+}}
 var bubbledata = [trace2]
 var bubblelayout = {
-  title: "OTU Prevalence in Sample"
+  title: "OTU Prevalence in Sample",
+  xaxis: {title: 'OTU ID Number'},
+  yaxis: {title: 'Prevalence in Sample'},
 }
 
 Plotly.newPlot("bubble", bubbledata, bubblelayout)

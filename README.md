@@ -12,4 +12,3 @@ The second visualzation is a bubble graph that will show all OTU populations, ra
 <br><br>
 Enjoy!
 
-Trying to get my github pages to work by adjusting the readme, hope this works!

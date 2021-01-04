@@ -1,7 +1,7 @@
 # plotlyChallenge
 <h3>Plotly Homework Assignment</h3>
 <br><br>
-This website illustrates the biodiverstiy of microbes (referred henceforth as operational taxonomic units, or OTUs) that are present in human navels in a study in an interactive dashboard.
+This website illustrates the biodiverstiy of microbes (operational taxonomic units, or OTUs) that are present in human navels in a study in an interactive dashboard.
 <br><br>
 On this website, you will be able to select a Test Subject referenced by their ID number from the dropdown menu near the upper left side of the page below the jumbotron header. Once selected, the subjects demographic information should populate in the box below as well as two visualizations. 
 <br><br>
